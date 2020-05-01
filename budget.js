@@ -168,25 +168,31 @@ var controller = (function(budgetCtrl, UICtrl) {
 		var value, description, type, newItem, input;
 		// get field input data
 		input = UICtrl.getInput();
-		
-		value = input.value;
-		description = input.description;
-		type = input.type;
+		var isInputValaNumber = isNaN(input.value);
+		var isInputValLargerThanZero = input.value > 0;
+		var isInputDescEmpty = input.description === "";
 
-		newItem = budgetCtrl.addItem(type, description, value);
-		console.log("testing for " + input);
-		// add the item to the budget controller
 
-		// add the new item to the user interface 
-		UICtrl.addListItem(newItem, type);
+		if (!isInputDescEmpty && isInputValLargerThanZero && !isInputValaNumber) {
+			value = input.value;
+			description = input.description;
+			type = input.type;
 
-		UICtrl.clearFields();
+			newItem = budgetCtrl.addItem(type, description, value);
+			console.log("testing for " + input);
+			// add the item to the budget controller
 
-		// calculate and update the budget
-		updateBudget();
+			// add the new item to the user interface 
+			UICtrl.addListItem(newItem, type);
 
-		// display the budget on the UI
-		alert(input.value + " " + input.description + " " + input.type);
+			UICtrl.clearFields();
+
+			// calculate and update the budget
+			updateBudget();
+
+			// display the budget on the UI
+			alert(input.value + " " + input.description + " " + input.type);
+		}
 	};
 
 	return {
