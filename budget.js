@@ -10,7 +10,7 @@ var budgetController = (function() {
 
 	var Income = function(id, description, value) {
 		this.id = id;
-		this.description. description;
+		this.description = description;
 		this.value = value;
 	}
 
@@ -63,6 +63,7 @@ var budgetController = (function() {
 
 })();
 
+///////// ---------------------------------------------------------------- ////////////
 // create UI controller module
 var UIController = (function() {
 
@@ -70,7 +71,9 @@ var UIController = (function() {
 		inputType: '.add__type',
 		inputDescription: ".add__description",
 		inputValue: ".add__value",
-		inputBtn: ".add__btn"
+		inputBtn: ".add__btn",
+		incomeContainer: ".income__list",
+		expensesContainer: ".expenses__list"
 	};
 
     // make the retrieved input values public
@@ -84,6 +87,27 @@ var UIController = (function() {
 	    	};
     	},
 
+    	addListItem: function(obj, type) {
+    		var html, newHtml, element;
+    		// Create HTML string with placeholder text
+    		if (type === 'inc') {
+    			element = DOMstrings.incomeContainer;
+    			html = '<div class="item clearfix" id="income-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>'
+    		} else if (type === 'exp') {
+    			element = DOMstrings.expensesContainer;
+    			html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__percentage">21%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
+    		}
+    		
+    		// replace placeholder text with some actual data
+    		newHtml = html.replace('%id%', obj.id);
+    		newHtml = newHtml.replace('%description%', obj.description);
+    		newHtml = newHtml.replace('%value%', obj.value);
+
+    		// insert the HTML into the DOM
+    		document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+
+    	},
+
     	// expose DOMstrings to be public
     	getDOMstrings: function() {
     		return DOMstrings;
@@ -92,10 +116,13 @@ var UIController = (function() {
 
 })();
 
+///////// ---------------------------------------------------------------- ////////////
 // create this module to enable UIController and budgetController to 
 // interact and know about each other
 // Global app controller
 var controller = (function(budgetCtrl, UICtrl) {
+
+
 
 	var setupEventListeners = function() {
 
@@ -126,10 +153,10 @@ var controller = (function(budgetCtrl, UICtrl) {
 		// add the item to the budget controller
 
 		// add the new item to the user interface 
-
+		UICtrl.addListItem(newItem, type);
 		// calculate the budget
 
-		// displa the budget on the UI
+		// display the budget on the UI
 		alert(input.value + " " + input.description + " " + input.type);
 	};
 
