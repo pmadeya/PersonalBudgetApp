@@ -108,6 +108,22 @@ var UIController = (function() {
 
     	},
 
+    	clearFields: function() {
+    		var fields, fieldsArr;
+    		fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+
+
+    		fieldsArr = Array.prototype.slice.call(fields);
+    		
+    		fieldsArr.forEach(function(current, i, array) {
+    			// current html element
+    			current.value = "";
+    		});
+    		
+    		// readjust the focus
+    		fieldsArr[0].focus();
+    	},
+
     	// expose DOMstrings to be public
     	getDOMstrings: function() {
     		return DOMstrings;
@@ -122,12 +138,11 @@ var UIController = (function() {
 // Global app controller
 var controller = (function(budgetCtrl, UICtrl) {
 
-
-
 	var setupEventListeners = function() {
 
 		var DOM = UICtrl.getDOMstrings();
 
+		// user hits enter
 		$(document).keypress(function (event) {
     		if (event.key === "Enter" || event.which === 13) {
         	// alert('enter key is pressed');
@@ -135,7 +150,9 @@ var controller = (function(budgetCtrl, UICtrl) {
     		}
 		});
 
+		// user clicks on the add button to add item
 		$(DOM.inputBtn).click(ctrlAddItem);
+
 
 	};
 
@@ -154,6 +171,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
 		// add the new item to the user interface 
 		UICtrl.addListItem(newItem, type);
+
+		UICtrl.clearFields();
+
 		// calculate the budget
 
 		// display the budget on the UI
