@@ -171,9 +171,16 @@ var UIController = (function() {
 
     	displayBudget: function(obj) {
     		$(DOMstrings.budgetLabel).text(obj.budget);
-    		$(DOMstrings.expenseLabel).text(obj.totalInc);
-    		$(DOMstrings.incomeLabel).text(obj.totalExp);
+    		$(DOMstrings.expenseLabel).text(obj.totalExp);
+    		$(DOMstrings.incomeLabel).text(obj.totalInc);
     		$(DOMstrings.percentageLabel).text(obj.percentage);
+
+    		if (obj.percentage > 0) {
+    			var currentPercentage = $(DOMstrings.percentageLabel).text();
+    			$(DOMstrings.percentageLabel).text(currentPercentage + "%");
+    		} else {
+    			$(DOMstrings.percentageLabel).text("___");
+    		}
     	},
 
     	// expose DOMstrings to be public
