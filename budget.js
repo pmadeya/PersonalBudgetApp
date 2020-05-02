@@ -114,7 +114,11 @@ var UIController = (function() {
 		inputValue: ".add__value",
 		inputBtn: ".add__btn",
 		incomeContainer: ".income__list",
-		expensesContainer: ".expenses__list"
+		expensesContainer: ".expenses__list",
+		budgetLabel: ".budget__value",
+		incomeLabel: ".budget__income--value",
+		expenseLabel: ".budget__expenses--value",
+		percentageLabel: ".budget__expenses--percentage"
 	};
 
     // make the retrieved input values public
@@ -161,8 +165,15 @@ var UIController = (function() {
     			current.value = "";
     		});
     		
-    		// readjust the focus
+    		// readjust the focus to description field
     		fieldsArr[0].focus();
+    	},
+
+    	displayBudget: function(obj) {
+    		$(DOMstrings.budgetLabel).text(obj.budget);
+    		$(DOMstrings.expenseLabel).text(obj.totalInc);
+    		$(DOMstrings.incomeLabel).text(obj.totalExp);
+    		$(DOMstrings.percentageLabel).text(obj.percentage);
     	},
 
     	// expose DOMstrings to be public
@@ -193,18 +204,18 @@ var controller = (function(budgetCtrl, UICtrl) {
 
 		// user clicks on the add button to add item
 		$(DOM.inputBtn).click(ctrlAddItem);
-
-
 	};
 
 	var updateBudget = function () {
-		// 1) calculate budget
+		// calculate budget
 		budgetCtrl.calculateBudget();
 
-		// 2) return budget
+		// return budget
 		var budget = budgetCtrl.getBudget();
-		// 3) dusplay the budget on the UI
-		console.log(budget);
+		// display the budget on the UI
+		// console.log(budget);
+		// display the budget on the UI
+		UICtrl.displayBudget(budget);
 	}
 
 	var ctrlAddItem = function() {
@@ -233,8 +244,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 			// calculate and update the budget
 			updateBudget();
 
-			// display the budget on the UI
-			alert(input.value + " " + input.description + " " + input.type);
+			// alert(input.value + " " + input.description + " " + input.type);
 		}
 	};
 
