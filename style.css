@@ -176,9 +176,23 @@ body {
 
 .red-focus:focus { 
     border: 1px solid #FF5049 !important; 
-    /**/
 }
 
+.container {
+    width: 1000px;
+    margin: 60px auto;
+}
+
+.income {
+    float: left;
+    width: 475px;
+    margin-right: 50px;
+}
+
+.expenses {
+    float: left;
+    width: 475px;
+}
 
 
 
