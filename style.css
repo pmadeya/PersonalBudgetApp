@@ -22,9 +22,39 @@ body {
 .right { 
     float: right; 
 }
-/*.red { 
+
+.red { 
     color: #FF5049 !important; 
 }
+
 .red-focus:focus { 
     border: 1px solid #FF5049 !important; 
-}*/
+}
+
+.top {
+    height: 40vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url(background.jpeg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
