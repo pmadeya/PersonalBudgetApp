@@ -275,7 +275,7 @@ h2 {
 }
 
 .item__delete--btn:active {
-    transform: translateY(5px); 
+    transform: translateY(4px); 
 }
 
 /* hover over item class and it's child (.item_delete--btn) will be displayed */
