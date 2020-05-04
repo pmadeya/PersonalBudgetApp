@@ -255,19 +255,19 @@ h2 {
 }
 
 .item__delete {
-    /*float: left;*/
+    float: left;
 }
 
 .item__delete--btn {
-    float: left;
+    /*float: left;*/
     font-size: 22px;
     background: none;
     border: none;
     cursor: pointer;
-    /*display: inline-block;*/
-    /*vertical-align: middle;*/
-    line-height: 1;
-    /*display: none;*/
+    display: inline-block;
+    vertical-align: middle;
+    /*line-height: 1;*/
+    display: none;
 }
 
 .item__delete--btn:focus {
@@ -275,8 +275,26 @@ h2 {
 }
 
 .item__delete--btn:active {
-    transform: translateY(2px); 
+    transform: translateY(5px); 
 }
+
+/* hover over item class and it's child (.item_delete--btn) will be displayed */
+.item:hover .item__delete--btn  { 
+    display: block; 
+    color: red;
+}
+
+/*push the value to the left along the x axis to alow for the delete button to appear
+not directly beside the value */
+.item:hover .item__value { 
+    transform: translateX(-20px); 
+}
+
+.item:hover .item__percentage { 
+    transform: translateX(-20px); 
+}
+
+
 
 
 
