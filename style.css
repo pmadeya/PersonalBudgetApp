@@ -271,7 +271,7 @@ h2 {
 }
 
 .item__delete--btn:focus {
-    /*outline: none; */
+    outline: none; 
 }
 
 .item__delete--btn:active {
